@@ -19,6 +19,33 @@ const Statistics = (props) => {
   )
 }
 
+const Total = (props) => {
+  // Component to average category values
+  return (
+    <div>
+      <p>{props.title}: {(props.value1 + props.value2 + props.value3)}</p>
+    </div>
+  )
+}
+
+const Average = (props) => {
+  // Component to average category values
+  return (
+    <div>
+      <p>{props.title}: {(props.value1-props.value3)/(props.value1 + props.value2 + props.value3)}</p>
+    </div>
+  )
+}
+
+const Positive = (props) => {
+  // Component to displya percentage of positive responses
+  return (
+    <div>
+      <p>{props.title}: {props.value1/(props.value1 + props.value2 + props.value3)*100}%</p>
+    </div>
+  )
+}
+
 const App = () => {
   // save clicks of each button to own state
   const [good, setGood] = useState(0)
@@ -35,6 +62,18 @@ const App = () => {
       <Statistics category='Good' count={good} />
       <Statistics category='Neutral' count={neutral} />
       <Statistics category='Bad' count={bad} />
+      <Total title='All'
+               value1={good}
+               value2={neutral}
+               value3={bad} />
+      <Average title="Average"
+               value1={good}
+               value2={neutral}
+               value3={bad} />
+      <Positive title='Positive'
+               value1={good}
+               value2={neutral}
+               value3={bad} />         
     </div>
   )
 }
