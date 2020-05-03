@@ -46,11 +46,15 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
-
-  useEffect(() => {
+  
+  const hookPersons = () => {
     axios.get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
   }
-  )
+
+  useEffect(hookPersons, [])
 
   const addName = (event) => {
     event.preventDefault()
